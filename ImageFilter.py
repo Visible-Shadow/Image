@@ -10,16 +10,16 @@
 # Before running any code, please run the following in the shell :
 # pip install -r requirement.txt
  
-f1 = "filter1"
-f2 = "filter2"
-f3 = "filter3"
+f1 = "Grey"
+f2 = "Tinted"
+f3 = "Brightness"
  
 # importing PIL.Image library and os library
 from PIL import Image #from PIL import Image
 import os
  
 # Deletes old created images if they exist
-images = ["combinedFilters.jpg","filter1.jpg","filter2.jpg","filter3.jpg","grey.jpg"]
+images = ["combinedFilters.jpg","Grey.jpg","Tinted.jpg","Brightness.jpg"]
 for i in images:
   if os.path.exists(i):
     os.remove(i)
@@ -45,50 +45,14 @@ if scale != 0:
 ########################
 #    Example Filter    #
 ########################
-def grey():
-  # Creates an ImageCore Object from original image
-  pixels = img.getdata()
-  # Creates empty array to hold new pixel values
-  new_pixels = []
-  # For every pixel from our original image, it saves
-  # a copy of that pixel to our new_pixels array
-  for p in pixels:
-    new_pixels.append(p)
-  # Starts at the first pixel in the image
-  location = 0
-  # Continues until it has looped through all pixels
-  while location < len(new_pixels):
-    # Gets the current color of the pixel at location
-    p = new_pixels[location]
-    # Splits color into red, green and blue components
-    r = p[0]
-    g = p[1]
-    b = p[2]
-    # Perform pixel manipulation and stores results
-    # to a new red, green and blue components
-    newr = (r + g + b) // 3
-    newg = (r + g + b) // 3
-    newb = (r + g + b) // 3
-    # Assign new red, green and blue components to pixel
-    # at that specific location
-    new_pixels[location] = (newr, newg, newb)
-    # Changes the location to the next pixel in array
-    location = location + 1
-  # Creates a new image, the same size as the original
-  # using RGB value format
-  newImage = Image.new("RGB", img.size)
-  # Assigns the new pixel values to newImage
-  newImage.putdata(new_pixels)
-  # Sends the newImage back to the main portion of program
-  return newImage
- 
+
  
 #####################
 #    Your Filter    # number 1
 #####################
  
-def filter1():
-  print("Code for filter1")
+def Grey():
+  print("Grey")
   # Creates an ImageCore Object from original image
   pixels = img.getdata()
   # Creates empty array to hold new pixel values
@@ -130,8 +94,8 @@ def filter1():
 #    Your Filters with User Input   # filter 2
 #####################################
  
-def filter2():
-  print("Code for filter2")
+def Tinted():
+  print("Tinted")
   colorf2 = input("Which color do you want to change?(r/g/b) ")
   while colorf2 != "r" and colorf2 != "g" and colorf2 != "b":
     colorf2 = input("Please enter r/g/b for which color you want to change:  ")
@@ -207,7 +171,15 @@ def filter2():
 #####################################
  
  
-def adjust_brightness(percentage):
+def adjust_brightness():
+    print("adjusting brightness    ")   # asks the user for brightness input
+    answer = int(input("\nWhat percentage would you like to adjust the brightness? (Options: -100 to 100)\n"))
+    # Handle valid inputs
+    if answer < 100 and answer > -100:
+      percentage = answer
+    else:
+      print("Invalid input. No changes applied.") # if the user types an invalid number this message is printed
+ 
     # Create an ImageCore object from the original image
     pixels = img.getdata()
     new_pixels = []
@@ -223,50 +195,24 @@ def adjust_brightness(percentage):
     new_image = Image.new("RGB", img.size)
     new_image.putdata(new_pixels)
     return new_image
- 
-def filter3():
-  print(" code for filter3:    adjusting brightness    ")   # asks the user for brightness input
-  answer = input("\nWhat percentage would you like to adjust the brightness? (Options: -25%, -50%, 50%, 100%)\n")
-    # Handle valid inputs
-  if answer == "-25%":
-      return adjust_brightness(-25)
-  elif answer == "-50%":
-      return adjust_brightness(-50)
-  elif answer == "50%":
-      return adjust_brightness(50)
-  elif answer == "100%":
-      return adjust_brightness(100)
-  else:
-      print("Invalid input. No changes applied.") # if the user types an invalid number this message is printed
-      return img
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
  
  
  
  
  
 # Creates the four filter images and saves them to our files
-a = grey()
-a.save("grey.jpg")
-b = filter1()
-b.save("filter1.jpg")
-c = filter2()
-c.save("filter2.jpg")
-d = filter3()
-d.save("filter3.jpg")
+b = Grey()
+b.save("Grey.jpg")
+c = Tinted()
+c.save("Tinted.jpg")
+d = adjust_brightness()
+d.save("adjust_brightness.jpg")
  
 # Image filter names for use below
-f1 = "filter1"
-f2 = "filter2"
-f3 = "filter3"
+f1 = "Grey"
+f2 = "Tinted"
+f3 = "adjust_brightness"
  
 # Apply multiple filters through prompts with the user
 #answer = input("\nWhich filter do you want me to apply?\n grey\n " +  f1 + "\n " + f2 + "\n " + f3 + "\n none\n\n")
