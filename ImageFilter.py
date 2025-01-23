@@ -51,6 +51,8 @@ if scale != 0:
 #    Your Filter    # number 1
 #####################
  
+#No user input
+#Averages out every single color, rgb
 def Grey():
   print("Grey")
   # Creates an ImageCore Object from original image
@@ -93,7 +95,8 @@ def Grey():
 #####################################
 #    Your Filters with User Input   # filter 2
 #####################################
- 
+
+#Uses user input to change 1 color by a certain amount
 def Tinted():
   print("Tinted")
   colorf2 = input("Which color do you want to change?(r/g/b) ")
@@ -170,7 +173,7 @@ def Tinted():
 #    Your Filters with User Input   # filter 3
 #####################################
  
- 
+#Uses user input to increase or decrease each color by a certain amount which changes the brightness
 def adjust_brightness():
     print("adjusting brightness    ")   # asks the user for brightness input
     answer = int(input("\nWhat percentage would you like to adjust the brightness? (Options: -100 to 100)\n"))
