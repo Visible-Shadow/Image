@@ -216,15 +216,15 @@ match apply1:
   case "t":
     a = Tinted()
     a.save("Combined.jpg")
-    img = Image.open('image.jpg')
+    img = Image.open('Combined.jpg')
   case "b":
     a = adjust_brightness()
     a.save("Combined.jpg")
-    img = Image.open('image.jpg')
+    img = Image.open('Combined.jpg')
   case "a":
     a = Grey()
     a.save("Combined.jpg")
-    img = Image.open('image.jpg')
+    img = Image.open('Combined.jpg')
     a = Tinted()
     a.save("Combined.jpg")
     img = Image.open('Combined.jpg')
