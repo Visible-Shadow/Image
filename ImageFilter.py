@@ -200,11 +200,52 @@ def adjust_brightness():
     return new_image
 
  
+
  
  
- 
- 
+apply1 = input("Which filters would you like to put onto this image(g = gray, t = tinted, b = brightness, a = all)")
+apply2 = "null"
+add = input("Would you like to add another filter to this image(y/n)")
+if add != "n":
+  apply2 = input("Which other filters would you like to put onto this image(g = gray, t = tinted, b = brightness)")
+match apply1:
+  case "g":
+    a = Grey()
+    a.save("Combined.jpg")
+    img = Image.open('Combined.jpg')
+  case "t":
+    a = Tinted()
+    a.save("Combined.jpg")
+    img = Image.open('image.jpg')
+  case "b":
+    a = adjust_brightness()
+    a.save("Combined.jpg")
+    img = Image.open('image.jpg')
+  case "a":
+    a = Grey()
+    a.save("Combined.jpg")
+    img = Image.open('image.jpg')
+    a = Tinted()
+    a.save("Combined.jpg")
+    img = Image.open('Combined.jpg')
+    a = adjust_brightness()
+    a.save("Combined.jpg")
+  case _:
+    print("Next time enter g, t, b, or a")
+match apply2:
+  case "g":
+    a = Grey()
+    a.save("Combined.jpg")
+  case "t":
+    a = Tinted()
+    a.save("Combined.jpg")
+  case "b":
+    a = adjust_brightness()
+    a.save("Combined.jpg")
+
+
 # Creates the four filter images and saves them to our files
+img = Image.open('image.jpg')
 b = Grey()
 b.save("Grey.jpg")
 c = Tinted()
