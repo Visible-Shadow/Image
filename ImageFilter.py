@@ -96,12 +96,12 @@ def Grey():
 #    Your Filters with User Input   # filter 2
 #####################################
 
-#Uses user input to change 1 color by a certain amount
+#Uses user input to change 1 color by a certain amount this gives the illusion that the image is tinted
 def Tinted():
   print("Tinted")
   colorf2 = input("Which color do you want to change?(r/g/b) ")
   while colorf2 != "r" and colorf2 != "g" and colorf2 != "b":
-    colorf2 = input("Please enter r/g/b for which color you want to change:  ")
+    colorf2 = input("Please enter r/g/b for which color you want to change: ")
   changef2 = int(input("How much do you want to change it by?(-255, 255) "))
   # Creates an ImageCore Object from original image
   pixels = img.getdata()
@@ -126,24 +126,26 @@ def Tinted():
     newr = r
     newg = g
     newb = b
-    if colorf2 == "r":
-      newr = r + changef2
-      if newr > 255:
-        newr = 255
-      if newr < 0:
-        newr = 0
-    if colorf2 == "g":
-      newg = g + changef2
-      if newg > 255:
-        newg = 255
-      if newg < 0:
-        newg = 0
-    if colorf2 == "b":
-      newb = b + changef2
-      if newb > 255:
-        newb = 255
-      if newb < 0:
-        newb = 0
+    #This is where it adds the certain amount you inputted to the color chosen
+    match colorf2:
+      case "r":
+        newr = r + changef2
+        if newr > 255:
+          newr = 255
+        if newr < 0:
+          newr = 0
+      case "g":
+        newg = g + changef2
+        if newg > 255:
+          newg = 255
+        if newg < 0:
+          newg = 0
+      case "b":
+        newb = b + changef2
+        if newb > 255:
+          newb = 255
+        if newb < 0:
+          newb = 0
     # Assign new red, green and blue components to pixel
     # at that specific location
     new_pixels[location] = (newr, newg, newb)
@@ -205,7 +207,8 @@ def adjust_brightness():
  
 apply1 = input("Which filters would you like to put onto this image(g = gray, t = tinted, b = brightness, a = all)")
 apply2 = "null"
-add = input("Would you like to add another filter to this image(y/n)")
+if apply1 != "a":
+  add = input("Would you like to add another filter to this image(y/n)")
 if add != "n":
   apply2 = input("Which other filters would you like to put onto this image(g = gray, t = tinted, b = brightness)")
 match apply1:
@@ -245,6 +248,7 @@ match apply2:
 
 
 # Creates the four filter images and saves them to our files
+"""
 img = Image.open('image.jpg')
 b = Grey()
 b.save("Grey.jpg")
@@ -252,7 +256,7 @@ c = Tinted()
 c.save("Tinted.jpg")
 d = adjust_brightness()
 d.save("adjust_brightness.jpg")
- 
+"""
 # Image filter names for use below
 f1 = "Grey"
 f2 = "Tinted"
