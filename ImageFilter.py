@@ -203,7 +203,7 @@ def adjust_brightness():
 
  
 
- 
+add = "n"
  
 apply1 = input("Which filters would you like to put onto this image(g = gray, t = tinted, b = brightness, a = all)")
 apply2 = "null"
